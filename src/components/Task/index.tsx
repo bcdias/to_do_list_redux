@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
-import { remove } from '../../store/reducers/tasks'
 import { ITask } from '../../types'
+import { useDeleteTaskMutation } from '../../service/api'
 
 type Props = ITask
 
 const Task = ({ description, priority, status, title, id }: Props) => {
-  const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
+  const [deleteTask, reponse] = useDeleteTaskMutation()
 
   return (
     <S.Card>
@@ -32,7 +31,7 @@ const Task = ({ description, priority, status, title, id }: Props) => {
         ) : (
           <>
             <S.Button onClick={() => setIsEditing(true)}>Editar</S.Button>
-            <S.RemoveCancelButton onClick={() => dispatch(remove(id))}>
+            <S.RemoveCancelButton onClick={() => deleteTask(id)}>
               Remover
             </S.RemoveCancelButton>
           </>

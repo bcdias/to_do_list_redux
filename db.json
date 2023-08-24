@@ -13,13 +13,6 @@
       "priority": "importante",
       "status": "pendente",
       "description": "Aprender como usar json-server"
-    },
-    {
-      "id": 3,
-      "title": "Estudar django",
-      "priority": "normal",
-      "status": "pendente",
-      "description": "Para usar o trabalho e conseguir emprego"
     }
   ]
 }

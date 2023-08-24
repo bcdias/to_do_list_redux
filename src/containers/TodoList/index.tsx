@@ -1,6 +1,5 @@
 import Task from '../../components/Task'
 import { Container } from './styles'
-// import { RootReducer } from '../../store'
 import { ITask } from '../../types'
 import { useGetTasksQuery } from '../../service/api'
 

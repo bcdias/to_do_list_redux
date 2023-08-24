@@ -4,13 +4,23 @@ import { ITask } from '../types'
 const tasksApi = createApi({
   reducerPath: 'tasksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
+  tagTypes: ['Delete'],
   endpoints: (builder) => ({
     getTasks: builder.query<ITask[], void>({
-      query: () => 'tasks'
+      query: () => 'tasks',
+      providesTags: ['Delete']
+    }),
+
+    deleteTask: builder.mutation({
+      query: (id: number) => ({
+        url: `tasks/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Delete']
     })
   })
 })
 
-export const { useGetTasksQuery } = tasksApi
+export const { useGetTasksQuery, useDeleteTaskMutation } = tasksApi
 
 export default tasksApi
