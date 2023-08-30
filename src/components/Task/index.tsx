@@ -1,14 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import * as S from './styles'
 import { ITask } from '../../types'
-import { useDeleteTaskMutation } from '../../service/api'
+import { useDeleteTaskMutation, useUpdateTaskMutation } from '../../service/api'
 
 type Props = ITask
 
 const Task = ({ description, priority, status, title, id }: Props) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [deleteTask, reponse] = useDeleteTaskMutation()
+  const [deleteTask, response] = useDeleteTaskMutation()
+  const [editingDescription, setEditingDescription] = useState('')
+  const [updateTask] = useUpdateTaskMutation()
+
+  useEffect(() => {
+    if (description.length > 0) {
+      setEditingDescription(description)
+    }
+  }, [description])
+
+  const handleCancelEdit = () => {
+    setIsEditing(false)
+    setEditingDescription(description)
+  }
+
+  const handleSave = () => {
+    updateTask({
+      id,
+      description: editingDescription,
+      priority,
+      status,
+      title
+    })
+    setIsEditing(false)
+  }
 
   return (
     <S.Card>
@@ -19,12 +43,16 @@ const Task = ({ description, priority, status, title, id }: Props) => {
       <S.Tag parameter="status" status={status}>
         {status}
       </S.Tag>
-      <S.Description value={description} />
+      <S.Description
+        disabled={!isEditing}
+        value={editingDescription}
+        onChange={(event) => setEditingDescription(event.target.value)}
+      />
       <S.ActionBar>
         {isEditing ? (
           <>
-            <S.SaveButton>Salvar</S.SaveButton>
-            <S.RemoveCancelButton onClick={() => setIsEditing(false)}>
+            <S.SaveButton onClick={handleSave}>Salvar</S.SaveButton>
+            <S.RemoveCancelButton onClick={handleCancelEdit}>
               Cancelar
             </S.RemoveCancelButton>
           </>

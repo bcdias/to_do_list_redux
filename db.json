@@ -9,6 +9,13 @@
     },
     {
       "id": 2,
+      "title": "Estudar UiPath",
+      "priority": "urgente",
+      "status": "concluída",
+      "description": "Aprender RPA hoje na parte da tarde"
+    },
+    {
+      "id": 3,
       "title": "Estudar json-server",
       "priority": "importante",
       "status": "pendente",

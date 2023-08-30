@@ -7,3 +7,9 @@ export interface ITask {
   status: enums.Status
   description: string
 }
+
+export interface IFilter {
+  term?: string
+  criteria: 'prioridade' | 'status' | 'todas'
+  value?: enums.Priorities | enums.Status
+}
