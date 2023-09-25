@@ -1,5 +1,5 @@
 import Task from '../../components/Task'
-import { Container } from './styles'
+import { Container, ResultMessage } from './styles'
 import { ITask } from '../../types'
 import { useGetTasksQuery } from '../../service/api'
 import { useSelector } from 'react-redux'
@@ -33,20 +33,30 @@ const TodoList = () => {
     }
   }
 
+  const showFilterResult = (amount: number | undefined) => {
+    let message = ''
+    const complement =
+      term !== undefined && term.length > 0 ? `e "${term}"` : ''
+
+    if (criteria === 'todas') {
+      message = `${amount} tarefa(s) encnotrada(s) como todas: ${complement}`
+    } else {
+      message = `${amount} tarefa(s) encnotrada(s) como : ${`${criteria}=${value}`} ${complement}`
+    }
+
+    return message
+  }
+
   if (isLoading) return <h2>carregando...</h2>
+
+  const tasksList = tasksFilter()
+  const message = showFilterResult(tasksList?.length)
 
   return (
     <Container>
-      <p>
-        2 tarefas marcado como: &quot;Categoria&ldquo; e &quot;{term}&ldquo;
-        <ul>
-          <li>{term}</li>
-          <li>{criteria}</li>
-          <li>{value}</li>
-        </ul>
-      </p>
+      <ResultMessage>{message}</ResultMessage>
       <ul>
-        {tasksFilter()?.map((task: ITask) => {
+        {tasksList?.map((task: ITask) => {
           return (
             <li key={task.id}>
               <Task

@@ -1,18 +1,11 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Estudar Redux",
-      "priority": "urgente",
-      "status": "concluída",
-      "description": "Aprender como usar essa tecnologia"
-    },
-    {
       "id": 2,
       "title": "Estudar UiPath",
       "priority": "urgente",
       "status": "concluída",
-      "description": "Aprender RPA hoje na parte da tarde"
+      "description": "Aprender RPA hoje na parte da manhã foi"
     },
     {
       "id": 3,
