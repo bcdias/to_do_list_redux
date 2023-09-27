@@ -1,7 +1,13 @@
-import AddButton from '../../components/AddButton'
+import FormRegister from '../../containers/FormRegister'
+import SideBar from '../../containers/Sidebar'
 
 const Register = () => {
-  return <AddButton />
+  return (
+    <>
+      <SideBar />
+      <FormRegister />
+    </>
+  )
 }
 
 export default Register

@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import * as S from './styles'
 import { ITask } from '../../types'
 import { useDeleteTaskMutation, useUpdateTaskMutation } from '../../service/api'
+import { SaveButton } from '../../styles'
 
 type Props = ITask
 
 const Task = ({ description, priority, status, title, id }: Props) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [deleteTask, response] = useDeleteTaskMutation()
+  const [deleteTask] = useDeleteTaskMutation()
   const [editingDescription, setEditingDescription] = useState('')
   const [updateTask] = useUpdateTaskMutation()
 
@@ -51,7 +52,7 @@ const Task = ({ description, priority, status, title, id }: Props) => {
       <S.ActionBar>
         {isEditing ? (
           <>
-            <S.SaveButton onClick={handleSave}>Salvar</S.SaveButton>
+            <SaveButton onClick={handleSave}>Salvar</SaveButton>
             <S.RemoveCancelButton onClick={handleCancelEdit}>
               Cancelar
             </S.RemoveCancelButton>

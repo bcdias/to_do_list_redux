@@ -1,5 +1,5 @@
 import Task from '../../components/Task'
-import { Container, ResultMessage } from './styles'
+import { MainContainer, Title } from '../../styles'
 import { ITask } from '../../types'
 import { useGetTasksQuery } from '../../service/api'
 import { useSelector } from 'react-redux'
@@ -53,8 +53,8 @@ const TodoList = () => {
   const message = showFilterResult(tasksList?.length)
 
   return (
-    <Container>
-      <ResultMessage>{message}</ResultMessage>
+    <MainContainer>
+      <Title as="p">{message}</Title>
       <ul>
         {tasksList?.map((task: ITask) => {
           return (
@@ -70,7 +70,7 @@ const TodoList = () => {
           )
         })}
       </ul>
-    </Container>
+    </MainContainer>
   )
 }
 
