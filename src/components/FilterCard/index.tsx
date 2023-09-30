@@ -13,12 +13,23 @@ export type Props = {
 
 const FilterCard = ({ label, criteria, value }: Props) => {
   const dispatch = useDispatch()
-  const { filter: filterData } = useSelector((state: RootReducer) => state)
+  const { value: filterValue, criteria: filterCriteria } = useSelector(
+    (state: RootReducer) => state.filter
+  )
   const { data: tasks } = useGetTasksQuery()
 
+  const filter = () => {
+    dispatch(
+      filterChange({
+        criteria,
+        value
+      })
+    )
+  }
+
   const isAtctive = () => {
-    const sameCriteria = filterData.criteria === criteria
-    const sameValue = filterData.value === value
+    const sameCriteria = filterCriteria === criteria
+    const sameValue = filterValue === value
 
     return sameCriteria && sameValue
   }
@@ -31,15 +42,6 @@ const FilterCard = ({ label, criteria, value }: Props) => {
     if (criteria === 'status') {
       return tasks?.filter((task) => task.status === value).length
     }
-  }
-
-  const filter = () => {
-    dispatch(
-      filterChange({
-        criteria,
-        value
-      })
-    )
   }
 
   const active = isAtctive()

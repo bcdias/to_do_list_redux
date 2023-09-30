@@ -9,7 +9,10 @@ type Variables = {
   black: string
   darkGrey: string
   darkGrey2: string
+  darkGrey3: string
   gray: string
+  gray2: string
+  blue: string
 }
 
 export default <Variables>{
@@ -23,5 +26,8 @@ export default <Variables>{
   black: '#000',
   darkGrey: '#8b8b8b',
   darkGrey2: '#666666',
-  gray: '#ccc'
+  darkGrey3: '#5e5e5e',
+  gray: '#ccc',
+  gray2: '#a1a1a1',
+  blue: '#1e90ff'
 }

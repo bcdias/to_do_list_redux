@@ -35,12 +35,14 @@ const FormRegister = () => {
           onChange={({ target }) => setTitle(target.value)}
           type="text"
           placeholder="Título"
+          required
         />
         <Input
           as="textarea"
           value={description}
           onChange={({ target }) => setDescription(target.value)}
           placeholder="Descrição da tarefa"
+          required
         />
         <Options>
           <p>Prioridade</p>
@@ -48,6 +50,7 @@ const FormRegister = () => {
             return (
               <Option key={priority}>
                 <input
+                  required
                   value={priority}
                   name="priority"
                   type="radio"

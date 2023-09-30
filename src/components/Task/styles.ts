@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import variables from '../../styles/variables'
 
 import * as enums from '../../util/enums/Tasks'
+import { Button } from '../../styles'
 
 type TagProps = {
   priority?: enums.Priorities
@@ -27,12 +28,18 @@ export const Card = styled.div`
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 32px;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
 `
 
 export const Title = styled.h3`
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-left: 8px;
 `
 
 export const Tag = styled.span<TagProps>`
@@ -62,18 +69,6 @@ export const Description = styled.textarea`
 export const ActionBar = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 16px;
-`
-
-export const Button = styled.button`
-  color: ${variables.white};
-  font-size: 12px;
-  font-weight: bold;
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  background-color: ${variables.black};
-  border-radius: 8px;
-  margin-right: 8px;
 `
 export const RemoveCancelButton = styled(Button)`
   background-color: ${variables.red};

@@ -2,17 +2,31 @@
   "tasks": [
     {
       "title": "Estudar UiPath",
-      "description": "Estudar para consegui novo emprego",
-      "priority": "urgente",
+      "description": "Aprender sobre boas bráticas",
+      "priority": "importante",
       "status": "pendente",
       "id": 1
     },
     {
-      "title": "Aprender React-router-dom",
-      "description": "Estudar os hoocks de react-router-dom",
+      "title": "Estudar Knime",
+      "description": "Para fazer minhas análises no trabalho",
       "priority": "importante",
       "status": "pendente",
       "id": 2
+    },
+    {
+      "title": "Estudar Lógica",
+      "description": "Para tudo que quero preciso de lógica",
+      "priority": "normal",
+      "status": "pendente",
+      "id": 3
+    },
+    {
+      "title": "Estudar C#",
+      "description": "Porque achei legal",
+      "priority": "urgente",
+      "status": "pendente",
+      "id": 4
     }
   ]
 }

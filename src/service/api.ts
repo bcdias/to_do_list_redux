@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ITask } from '../types'
 
-type NewTask = Omit<ITask, 'id'>
+type FieldsToUpdate = Partial<ITask>
 
 const tasksApi = createApi({
   reducerPath: 'tasksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
-  tagTypes: ['Delete', 'Update', 'Add'],
+  tagTypes: ['Delete', 'Update', 'Add', 'Finish'],
   endpoints: (builder) => ({
     getTasks: builder.query<ITask[], void>({
       query: () => 'tasks',
-      providesTags: ['Delete', 'Update', 'Add']
+      providesTags: ['Delete', 'Update', 'Add', 'Finish']
     }),
 
     deleteTask: builder.mutation({
@@ -21,25 +21,22 @@ const tasksApi = createApi({
       invalidatesTags: ['Delete']
     }),
 
-    updateTask: builder.mutation<ITask, ITask>({
+    updateTask: builder.mutation<FieldsToUpdate, FieldsToUpdate>({
       query: (data) => {
-        const { id, description, priority, status, title } = data
+        const { id, description } = data
 
         return {
           url: `tasks/${id}`,
           method: 'PATCH',
           body: {
-            description,
-            priority,
-            status,
-            title
+            description
           }
         }
       },
       invalidatesTags: ['Update']
     }),
 
-    addTask: builder.mutation<NewTask, NewTask>({
+    addTask: builder.mutation<FieldsToUpdate, FieldsToUpdate>({
       query: (data) => {
         const { title, description, priority, status } = data
 
@@ -55,6 +52,21 @@ const tasksApi = createApi({
         }
       },
       invalidatesTags: ['Add']
+    }),
+
+    finishTask: builder.mutation<FieldsToUpdate, FieldsToUpdate>({
+      query: (data) => {
+        const { id, status } = data
+
+        return {
+          url: `tasks/${id}`,
+          method: 'PATCH',
+          body: {
+            status
+          }
+        }
+      },
+      invalidatesTags: ['Finish']
     })
   })
 })
@@ -63,7 +75,8 @@ export const {
   useGetTasksQuery,
   useDeleteTaskMutation,
   useUpdateTaskMutation,
-  useAddTaskMutation
+  useAddTaskMutation,
+  useFinishTaskMutation
 } = tasksApi
 
 export default tasksApi
